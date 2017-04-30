@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users
-  et 'sessions' => 'sessions#create', as: :create
+  get 'sessions' => 'sessions#create', as: :create
 
   get 'sessions/destroy'
 
