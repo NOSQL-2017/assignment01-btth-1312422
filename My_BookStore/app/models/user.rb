@@ -1,11 +1,10 @@
-require 'pry'
+
 class User < ApplicationRecord
   has_secure_password
   attr_accessor :avatar
 
   after_save :save_avatar_image, if: :avatar
   def save_avatar_image
-    binding.pry
   	filename = avatar.original_filename
   	folder = "public/users/#{id}/avatar"
 

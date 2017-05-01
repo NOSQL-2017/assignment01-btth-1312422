@@ -1,0 +1,42 @@
+<%= form_for(book) do |f| %>
+<% if book.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+  <ul>
+    <% book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-5">
+    <h5>Image of book</h5>
+    <%= f.text_field :avatar, :class => 'form-group', :style => 'width: 70%; height:40px' , :required => true%>
+
+    <h5>Name</h5>
+    <%= f.text_field :name, :class => 'form-group', :style => 'width: 70%; height:40px' , :required => true%>
+
+    <h5>Kind_of_book</h5>
+    <%= f.select(:kind_id, KindOfbook.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'}, {:style => 'width: 70%; height:40px', :required => true }) %>
+
+
+    <h5>Price</h5>
+    <%= f.text_field :price, :class => 'form-group', :style => 'width: 70%; height:40px', :required => true%>
+
+  </div>
+
+  <div class="col-lg-5">
+
+    <h5>Information</h5>
+    <%= f.text_area :infromation, :class => 'form-group', size: '50x3', :style => 'width: 70%' , :required => true %>
+
+  </div>
+  <div class="actions">
+    <%= f.submit 'Continue' , :class => 'btn btn-success' %>
+  </div>
+</div>
+<% end %>
