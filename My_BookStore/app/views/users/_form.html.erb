@@ -9,6 +9,7 @@
   <% end %>
   <div class="row">
     <div class="col-lg-6">
+
       <h5>Username</h5>
       <%= f.text_field :username, :class => 'form-group', :style => 'width: 70%; height:40px' %>
 
@@ -33,6 +34,9 @@
 
       <h5>Email</h5>
       <%= f.text_field :email, :class => 'form-group', :style => 'width: 70%; height:40px'%>
+
+      <h5>Avatar</h5>
+      <%= f.file_field :avatar, :class => 'form-group', :style => 'width: 70%; height:40px'%>
 
     </div>
   </div>
