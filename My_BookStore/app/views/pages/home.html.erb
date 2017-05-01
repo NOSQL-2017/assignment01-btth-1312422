@@ -1,1 +1,35 @@
 <% provide(:page_title, 'Home') %>
+<!-- Page Content -->
+<div class="row">
+    <!-- catalog bên trái -->
+    <div class="col-xs-2">
+        <p class="lead">Danh Mục</p>
+        <div class="list-group">
+            <% KindOfBook.all.each do |i| %>
+            <a href="/kind_of_books/<%=i.id%>" class="list-group-item"><%= i.name %></a>
+            <% end %>
+        </div>
+    </div>
+    <!-- kết thúc catalog bên trái -->
+
+    <!-- nội dung chính toàn trang -->
+    <div class="col-xs-9">
+        <!-- nivo slide đầu trang -->
+        <div class="row carousel-holder">
+            <div class="col-md-12">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img class="slide-image" src="/images/slide1.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ket thuc nivo slide đầu trang -->
+        <div class="row">
+            
+        </div>
+    </div>
+</div>
+<!-- /.container -->

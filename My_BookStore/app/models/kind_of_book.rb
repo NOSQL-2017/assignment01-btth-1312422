@@ -1,0 +1,2 @@
+class KindOfBook < ApplicationRecord
+end

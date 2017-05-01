@@ -35,8 +35,11 @@
       <li><%= link_to 'Register',register_path, class: "btn btn-outline-success pull-xs-right", style: "margin-left:10px"%></li>
       <li><%= link_to 'login', login_path, class: "btn btn-outline-success pull-xs-right", style: "margin-left:10px"%></li>  
       <% else %>
-        <li><%= link_to 'logout',logout_path, class: "btn btn-outline-success pull-xs-right", style: "margin-left:10px"%></li>
-        <li><%= link_to 'User',info_path(), class: "btn btn-outline-success pull-xs-right", style: "margin-left:10px"%></li>
+      <li>
+        <% @User = User.find_by(id: session[:current_user_id]) %>
+        <%=@User.name%>
+      </li>
+      <li><%= link_to 'logout',logout_path, class: "btn btn-outline-success pull-xs-right", style: "margin-left:10px"%></li>
       <%= form_tag(users_path, method: :get) do %>
       <%end%>
       <%end%>
