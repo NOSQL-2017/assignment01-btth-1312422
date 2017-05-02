@@ -2,7 +2,7 @@
   <div class="col-md-3"></div>
   <div class="col-md-6">
     <div class="thumbnail">
-      <%= image_tag "/books/#{@book.id}/image_info/#{@book.image_info_filename}",:class => "img-responsive",:style => "width:100%; height: 300px",:size => "260x180"%>
+      <%= image_tag "/books/#{@book.id}/image_info/#{@book.cover_filename}",:class => "img-responsive",:style => "width:100%; height: 300px",:size => "260x180"%>
       <div class="caption-full">
         <h4 class="pull-right"><%=@book.price%>đ</h4>
         <h3><%=@book.name%></h3>
@@ -13,19 +13,17 @@
       <div class="ratings">
         <p>
           <%(1..5).each do |i|%>
-          <%if i <= @book.star%>
-          <span class="glyphicon glyphicon-star"></span>
-          <%else%>
-          <span class="glyphicon glyphicon-star-empty"></span>
-          <%end%>
+            <%if i <= @book.star%>
+            <span class="glyphicon glyphicon-star"></span>
+              <%else%>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            <%end%>
           <%end%>
         </p>
         <div>
           <%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Do you want destroy?' }, class: 'btn btn-primary', style: "margin-bottom: 25px;padding-top: 8px;padding-bottom: 6px;"%>
           <%= link_to 'Edit food', edit_book_path(@book), class: 'btn btn-primary', style: "margin-bottom: 25px;padding-top: 8px;padding-bottom: 6px;"%>
-          <%= link_to 'Edit info food', edit_book_info_path(@book), class: 'btn btn-primary', style: "margin-bottom: 25px;padding-top: 8px;padding-bottom: 6px;"%>
         </div>
-        <% end %>
       </div>
     </div>
   </div>

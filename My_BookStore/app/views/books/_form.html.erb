@@ -14,14 +14,12 @@
 <div class="row">
   <div class="col-lg-1"></div>
   <div class="col-lg-5">
-    <h5>Image of book</h5>
-    <%= f.file_field :image_info, :class => 'form-group', :style => 'width: 70%; height:40px'%>
 
     <h5>Name</h5>
     <%= f.text_field :name, :class => 'form-group', :style => 'width: 70%; height:40px' , :required => true%>
 
     <h5>Kind_of_book</h5>
-    <%= f.select(:kind_id, KindOfbook.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'}, {:style => 'width: 70%; height:40px', :required => true }) %>
+    <%= f.select(:kind_id, KindOfBook.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'}, {:style => 'width: 70%; height:40px', :required => true }) %>
 
 
     <h5>Price</h5>
@@ -32,8 +30,10 @@
   <div class="col-lg-5">
 
     <h5>Information</h5>
-    <%= f.text_area :infromation, :class => 'form-group', size: '50x3', :style => 'width: 70%' , :required => true %>
+    <%= f.text_area :information, :class => 'form-group', size: '50x3', :style => 'width: 70%' , :required => true %>
 
+    <h5>Cover</h5>
+    <%= f.file_field :cover, :class => 'form-group', :style => 'width: 70%; height:40px'%>
   </div>
   <div class="actions">
     <%= f.submit 'Continue' , :class => 'btn btn-success' %>
