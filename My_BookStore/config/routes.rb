@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :books
   resources :users
+  
   get 'sessions' => 'sessions#create', as: :create
 
   get 'sessions/destroy'

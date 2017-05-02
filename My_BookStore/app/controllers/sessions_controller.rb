@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 			@users = User.find_by(username: params[:username])
 			if @users and @users.authenticate(params[:password])
 				session[:current_user_id] = @users.id
-				redirect_to session.delete(:return_to)
+				redirect_to "/"
 			else
 				render :new
 			end
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 			session[:omniauth] = auth.except('extra')
 			user = User.sign_in_from_omniauth(auth)
 			session[:current_user_id] = user.id
-			redirect_to session.delete(:return_to)
+			redirect_to "/"
 		end
 	end
 
@@ -26,6 +26,6 @@ class SessionsController < ApplicationController
 		session[:return_to] ||= request.referer
 		session[:current_user_id] = nil
 		session[:omniauth] = nil
-		redirect_to session.delete(:return_to)
+		redirect_to "/"
 	end
 end
