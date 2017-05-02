@@ -1,3 +1,4 @@
+require 'pry'
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
@@ -24,8 +25,9 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    params[:id] = session[:current_user_id];
+    binding.pry
     @book = Book.new(book_params)
+    @book.user_id= current_user.id
     respond_to do |format|
       if @book.save
         format.html { redirect_to @book, notice: 'Book was successfully created.' }

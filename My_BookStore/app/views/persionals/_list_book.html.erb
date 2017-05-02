@@ -5,19 +5,18 @@
 	<% @books.each do |book|%>
 	<div class="col-sm-3 col-lg-3 col-md-3">
 		<div class="thumbnail">
-			<img src="<%= book.image_info %>" alt="" class="img-thumbnail" style="width:100%; height: 200px">
+			<%= image_tag "/books/#{book.id}/cover/#{book.cover_filename}" , :class => "img-thumbnail", :style => "width:100%; height: 200px" %>
 			<div class="caption">
-				<h4 class="pull-right"><%=book.price%>đ</h4>
+				<h5><%=book.price%>đ</h4>
 				<h4><%=book.name%></h4>
-				<h4><textarea rows="1" disabled="disabled"><%=book.infomation%></textarea></h4>
-				<h5 class="text-muted"><%=book.display_created_at%></h5>
+				<h4><textarea rows="1" disabled="disabled"><%=book.information%></textarea></h4>
+				<h6 class="text-muted"><%=book.created_at%></h6>
 			</div>
 			<div class="ratings">
 				<%= link_to 'More info', book, class: 'pull-right'%>
-				<% @bookInfo = bookInfo.find_by(book_id: book.id)%>
 				<p>
 					<%(1..5).each do |i|%>
-					<%if i <= @book.star%>
+					<%if i <= book.star%>
 					<span class="glyphicon glyphicon-star"></span>
 					<%else%>
 					<span class="glyphicon glyphicon-star-empty"></span>
