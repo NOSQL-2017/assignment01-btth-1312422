@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :books
   resources :users
   resources :kind_of_books
-  resources :purchase_orders 
+  resources :purchase_orders
   
   get 'sessions' => 'sessions#create', as: :create
 

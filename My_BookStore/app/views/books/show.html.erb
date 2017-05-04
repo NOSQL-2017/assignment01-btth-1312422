@@ -20,11 +20,18 @@
             <%end%>
           <%end%>
         </p>
+        <%if @book.user_id != session[:current_user_id]%>
+        <div>
+          <a href="" class="btn btn-primary add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+        </div>
+        <%else%>
         <div>
           <%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Do you want destroy?' }, class: 'btn btn-primary', style: "margin-bottom: 25px;padding-top: 8px;padding-bottom: 6px;"%>
-          <%= link_to 'Edit food', edit_book_path(@book), class: 'btn btn-primary', style: "margin-bottom: 25px;padding-top: 8px;padding-bottom: 6px;"%>
+          <%= link_to 'Edit book', edit_book_path(@book), class: 'btn btn-primary', style: "margin-bottom: 25px;padding-top: 8px;padding-bottom: 6px;"%>
         </div>
+        <% end %>
       </div>
     </div>
   </div>
  </div>
+ <%= render 'ShoppingCart', type: 'infoProduce' %>
