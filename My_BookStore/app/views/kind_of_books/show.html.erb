@@ -12,7 +12,7 @@
 			<%@kind_of_books.each do |i|%>
 			<div class="col-sm-3 col-lg-3 col-md-3" id="book_<%= i.id %>">
 				<div class="thumbnail">
-					<%= image_tag "/books/#{i.id}/cover/#{i.cover_filename}",:class => "img-thumbnail",:style => "height: 150px; width: 320px;"%>
+					<%= image_tag "/books/#{i.id}/cover/#{i.cover_filename}",:id => "img_#{i.id}", :class => "img-thumbnail",:style => "height: 150px; width: 320px;"%>
 					<div class="caption">
 						<h5 id="price_<%= i.id %>" class="pull-right"><%=i.price%>đ</h5>
 						<h5><%=i.name%></h5>

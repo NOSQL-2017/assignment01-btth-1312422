@@ -1,0 +1,2 @@
+class DetailOfCart < ApplicationRecord
+end

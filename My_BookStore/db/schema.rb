@@ -28,6 +28,23 @@ ActiveRecord::Schema.define(version: 20170502030737) do
     t.integer  "user_id"
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.bigint   "total_money"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "detail_of_carts", force: :cascade do |t|
+    t.integer  "cart_id"
+    t.integer  "food_id"
+    t.integer  "quantity"
+    t.bigint   "price"
+    t.bigint   "total_money"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "kind_of_books", force: :cascade do |t|
     t.string "name"
   end
