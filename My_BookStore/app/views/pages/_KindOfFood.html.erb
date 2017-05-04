@@ -1,0 +1,35 @@
+<div class="row">
+    <!-- nội dung chính toàn trang -->
+    <div class="row">
+        <% @ListFood = Food.where(kind_id: 1) %>
+        <% @ListFood.each do |i| %>
+        <div class="col-sm-3 col-lg-3 col-md-3" id="food_<%= i.id %>">
+            <div class="thumbnail">
+                <img src="<%=i.avatar%>" alt="" style="height: 150px; width: 320px;">
+                <div class="caption">
+                    <h4 class="pull-right">$<%= i.price %></h4>
+                    <h4><a href="/info/<%= i.id %>"><%= i.name %></a></h4>
+                    <p><%= i.ingredient %></p>
+                </div>
+                <div class="ratings">
+                    <%@food_info = FoodInfo.find(i.id)%>
+                    <p class="pull-right"><%= @food_info.number_of_review %> reviews</p>
+                    <p>
+                        <% for i1 in 0..@food_info.star-1 %>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <% end %>
+                        <% for i1 in 0..5-@food_info.star-1 %>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <% end %>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <% end %>
+        <center><button class="buttonMore" onclick="window.location.href='/kind-of-food/<%= params[:type] %>/?page=<%= params[:page].to_i+1 %>'">More..</button></center>
+        <hr>
+    </div> <!-- kết thúc danh sách item 2 dòng đầu -->        
+
+    <!-- kết thúc phần nội dung toàn trang  -->
+
+</div>

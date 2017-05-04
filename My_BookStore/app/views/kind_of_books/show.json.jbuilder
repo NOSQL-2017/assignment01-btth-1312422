@@ -1,0 +1,1 @@
+json.partial! "kind_of_books/kind_of_book", kind_of_book: @kind_of_book

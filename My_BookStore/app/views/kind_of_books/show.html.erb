@@ -1,0 +1,47 @@
+<div class="row">
+	<div class="col-xs-2">
+		<p class="lead">Danh Mục</p>
+		<div class="list-group">
+			<% KindOfBook.all.each do |i| %>
+			<a href="/kind_of_books/<%=i.id%>" class="list-group-item"><%= i.name %></a>
+			<% end %>
+		</div>
+	</div>
+	<div class="col-xs-9" style="padding-top: 47px;">
+		<div class="row">
+			<%@kind_of_books.each do |i|%>
+			<div class="col-sm-3 col-lg-3 col-md-3" id="book_<%= i.id %>">
+				<div class="thumbnail">
+					<%= image_tag "/books/#{i.id}/cover/#{i.cover_filename}",:class => "img-thumbnail",:style => "height: 150px; width: 320px;"%>
+					<div class="caption">
+						<h5 id="price_<%= i.id %>" class="pull-right"><%=i.price%>đ</h5>
+						<h5><%=i.name%></h5>
+						<h5><textarea rows="4" disabled="disabled"><%=i.information%></textarea></h5>
+					</div>
+					<div class="ratings">
+						<%= link_to 'More info', i, class: 'pull-right'%>
+						<p>
+							<%(1..5).each do |i1|%>
+							<%if i1 <= i.star%>
+							<span class="glyphicon glyphicon-star"></span>
+							<%else%>
+							<span class="glyphicon glyphicon-star-empty"></span>
+							<%end%>
+							<%end%>
+						</p>
+					</div>
+					<%if i.user_id != session[:current_user_id]%>
+					<div>
+						<a href="" class="btn btn-primary add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+					</div>
+					<%end%>
+				</div>
+			</div>
+			<%end%>
+		</div>
+		<div class="row container">
+			<center><%= will_paginate @kind_of_books %></center>
+		</div>
+	</div>
+</div>
+ <%= render 'pages/ShoppingCart', type: 'home' %>

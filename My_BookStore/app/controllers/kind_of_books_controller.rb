@@ -7,9 +7,9 @@ class KindOfBooksController < ApplicationController
 
   def show
     if params[:search].present?
-      @kind_of_books = book.where("name like? and kind_id =?", "%#{params[:search]}%", params[:id]).paginate(:page => params[:page], :per_page => 8)
+      @kind_of_books = Book.where("name like? and kind_id =?", "%#{params[:search]}%", params[:id]).paginate(:page => params[:page], :per_page => 8)
     else
-      @kind_of_books = book.where(kind_id: params[:id]).paginate(:page => params[:page], :per_page => 8)
+      @kind_of_books = Book.where(kind_id: params[:id]).paginate(:page => params[:page], :per_page => 8)
     end
   end
 

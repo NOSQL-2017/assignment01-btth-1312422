@@ -10,7 +10,7 @@
                     <% @book_1.each do |f| %>
                     <div class="col-sm-3 col-lg-3 col-md-3" id="food_<%= f.id %>">
                         <div class="thumbnail">
-                            <%= image_tag "/books/#{f.id}/cover/#{f.cover_filename}",:id => "img_#{f.id}" ,:style => "height: 150px; width: 320px;"%>
+                            <%= image_tag "/books/#{f.id}/cover/#{f.cover_filename}",:style => "height: 150px; width: 320px;"%>
                             <div class="caption">
                                 <h5><%= f.price %>đ</h5>
                                 <h5><a href="/books/<%= f.id %>"><%= f.name %></a></h5>
@@ -83,3 +83,4 @@
             <% end %>
         </div>
         <!-- kết thúc phần nội dung toàn trang  -->
+        <%= render 'ShoppingCart', type: 'home' %>

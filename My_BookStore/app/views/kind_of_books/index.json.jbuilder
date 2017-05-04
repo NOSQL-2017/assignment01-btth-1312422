@@ -1,0 +1,1 @@
+json.array! @kind_of_books, partial: 'kind_of_books/kind_of_book', as: :kind_of_book

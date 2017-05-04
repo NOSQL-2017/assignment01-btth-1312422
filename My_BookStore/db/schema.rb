@@ -21,15 +21,25 @@ ActiveRecord::Schema.define(version: 20170502030737) do
     t.text     "information"
     t.integer  "price"
     t.integer  "kind_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "cover_filename"
-    t.integer  "star"
+    t.integer  "star",           default: 3
     t.integer  "user_id"
   end
 
   create_table "kind_of_books", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "purchase_orders", force: :cascade do |t|
+    t.integer  "seller_id"
+    t.integer  "buyer"
+    t.integer  "food_id"
+    t.integer  "total"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "status",     default: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,9 +49,9 @@ ActiveRecord::Schema.define(version: 20170502030737) do
     t.integer  "gender"
     t.string   "email"
     t.text     "address"
-    t.integer  "kind_of_user"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "kind_of_user",    default: 2
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.date     "birthday"
     t.string   "avatar_filename"
   end
