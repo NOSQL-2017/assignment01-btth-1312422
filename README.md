@@ -32,7 +32,7 @@ Yêu cầu **bắt buộc**
 * [X] Người bán được phép đăng nhập vào hệ thống để quản lý sách mình muốn bán
 * [ ] Nhân viên hệ thống được phép đăng nhập để quản lý danh mục sản phẩm
 * [X] Người dùng được phép xem lại các đơn hàng đã mua và trạng thái đơn hàng
-* [X] Người bán được phép xem các đơn hàng đã đặt và cập nhật trạng thái đơn hàng (đã nhập, đã giao)
+* [ ] Người bán được phép xem các đơn hàng đã đặt và cập nhật trạng thái đơn hàng (đã nhập, đã giao)
 
 Yêu cầu **không bắt buộc**
 * [X] Người dùng được phép sử dụng giỏ hàng
