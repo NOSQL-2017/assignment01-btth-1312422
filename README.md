@@ -3,25 +3,24 @@
 **Bookstore** là một repository trong bài tập thực hành của lớp.
 
 Thành viên:
-* [ ] **MSSV1** Tên sinh viên 1 (tên tài khoản github)
-* [ ] **MSSV2** Tên sinh viên 2 (tên tài khoản github)
+* [ ] **1312422** Nguyen Le Duy Phat (NLDPhat)
 
-URL: **Link github page**
+URL: **https://github.com/NLDPhat**
 
 ## Yêu cầu
 
 Sinh viên check vào các mục bên dưới và ghi mã sinh viên đã làm vào chức năng theo mẫu. Mục nào ko có MSSV là tính điểm theo nhóm. Cần sắp xếp các chức năng bên dưới theo thứ tự MSSV đã thực hiện.
 
 Yêu cầu **GIT**
-* [ ] Có sử dụng GIT.
+* [X] Có sử dụng GIT.
 * [ ] Sử dụng GIT theo Centralized Workflow.
 * [ ] Sử dụng GIT theo Feature Branch Workflow.
 * [ ] Sử dụng GIT theo Gitflow Workflow.
 
 Công nghệ sử dụng (tự động thêm nếu phần mình dùng không được liệt kê):
 * [ ] Nodejs
-* [ ] Ruby on Rails
-* [ ] Postgresql
+* [X] Ruby on Rails
+* [X] Postgresql
 * [ ] Mongodb
 * [ ] Redis
 * [ ] Cassandra
@@ -29,22 +28,25 @@ Công nghệ sử dụng (tự động thêm nếu phần mình dùng không đ�
 
 Yêu cầu **bắt buộc**
 * [ ] Triển khai ứng dụng sử dụng docker compose và Dockerfile
-* [ ] Người dùng được phép đăng nhập để tiến hành mua sách
-* [ ] Người bán được phép đăng nhập vào hệ thống để quản lý sách mình muốn bán
+* [X] Người dùng được phép đăng nhập để tiến hành mua sách
+* [X] Người bán được phép đăng nhập vào hệ thống để quản lý sách mình muốn bán
 * [ ] Nhân viên hệ thống được phép đăng nhập để quản lý danh mục sản phẩm
-* [ ] Người dùng được phép xem lại các đơn hàng đã mua và trạng thái đơn hàng
-* [ ] Người bán được phép xem các đơn hàng đã đặt và cập nhật trạng thái đơn hàng (đã nhập, đã giao)
+* [X] Người dùng được phép xem lại các đơn hàng đã mua và trạng thái đơn hàng
+* [X] Người bán được phép xem các đơn hàng đã đặt và cập nhật trạng thái đơn hàng (đã nhập, đã giao)
 
 Yêu cầu **không bắt buộc**
-* [ ] Người dùng được phép sử dụng giỏ hàng
+* [X] Người dùng được phép sử dụng giỏ hàng
 * [ ] Quản lý session trong 1 CSDL riêng bằng redis
 * [ ] Quản lý danh mục sản phẩm trong 1 CSDL riêng bằng MongoDB
 * [ ] Quản lý giỏ hàng trong 1 CSDL riêng bằng Cassandra
 * [ ] Quản lý người mua và người bán follow, gửi tin nhắn với nhau và lưu trong CSDL riêng bằng Neo4j
 
 Các **chức năng của demo** đã thực hiện hoặc dự kiến thực hiện. Nhóm check vào các chức năng đã làm
-* [ ] Chức năng 1
-* [ ] Chức năng 2
+* [X] Login, logout
+* [X] Dang bai san pham
+* [X] Dat hang
+* [ ] Binh luan, danh gia san pham ( Du kien)
+* [ ] Dang nhap bang cac mang xa hoi khac (Du kien )
 
 ## Demo
 
