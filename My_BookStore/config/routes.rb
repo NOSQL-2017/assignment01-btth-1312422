@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'register' => 'users#new', as: :register
   get 'info' => 'persionals#personal_page'
   get 'kind_of_book/:type', to: "pages#KindOfBook"
+  get 'checkout', to: 'checkout#index'
+  post 'order', to: "checkout#order"
   resources :sessions, only: [:new, :create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

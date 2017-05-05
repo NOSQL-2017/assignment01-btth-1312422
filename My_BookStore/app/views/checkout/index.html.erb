@@ -1,0 +1,207 @@
+<%= render 'readShoppingCart' %>
+<script src="/js/checkout.js" data-version-4></script>
+<link href="/css/checkout.css" rel="stylesheet" type="text/css">
+<table class="table" style="margin-top: 5px;">
+	<tbody>
+	<tr>
+	    <td>
+			<div class="title"><span class="icon">1</span>Thông tin người mua</div>
+			<div class="content">
+				<input class="inputInfo name" type="text" name="name" value="<%= @user.name %>" autocomplete="name" title="Họ và tên người nhận" placeholder="Họ và tên" tabindex="1">
+				<input class="inputInfo email" type="text" name="email" value="<%= @user.email %>" autocomplete="email" title="Email" placeholder="Email" tabindex="2">
+			</div>
+		</td>
+	    <td>
+			<div class="title"><span class="icon">2</span>Hình thức thanh toán</div>
+			<div class="content">
+				<div style="display: block">
+					<input type="radio" name="pmt_method_payment" class="" id="method_payment1" ipaycod="1" idetail="0" value="" pmttype="2" checked>
+					<label style="margin-bottom: 0px;"><div class="method_name" style="font-weight: bold;">Thanh toán khi nhận hàng</div></label>
+				</div>
+				<div style="display: block; padding: 0px 0px 0px 25px; color: #b7b7b7;">
+					Khi nhận hàng, bạn sẽ thanh toán tiền cho nhân viên giao hàng
+				</div>
+				<div style="display: block">
+					<input type="radio" name="pmt_method_payment" class="" id="method_payment2" ipaycod="1" idetail="0" value="" pmttype="2">
+					<label><div class="method_name" style="font-weight: bold;">Thanh toán bằng paypal</div></label>
+				</div>
+				<div>
+					<img style="margin-left: 31px;" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-medium.png" alt="Check out with PayPal" />
+				</div>
+			</div>
+		</td> 
+	    <td>
+			<div class="title"><span class="icon">3</span>Hóa đơn mua hàng</div>
+			<div class="content">
+				<div class=produce>
+
+				</div>				
+				<table class="table_order">
+					<tbody>
+						<tr>
+							<td class="type">Tổng tiền hàng</td>
+							<td class="value">
+								<span>₫</span><span id="total_money_items">100</span>
+							</td>
+						</tr>
+						<tr>
+							<td class="type">Phí giao hàng</td>
+							<td class="value">
+								<span>₫</span><span id="delievy_fee">0</span>
+							</td>
+						</tr>
+						<tr>
+							<td class="type">Tổng thanh toán</td>
+							<td class="value" style="color: #f74f00;">
+								<span>₫</span><span id="total_money">100</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<center><textarea placeholder="Thêm ghi chú cho đơn hàng..." class="note_order" title="Ghi chú về đơn hàng" id="" name="ord_otherinfo"></textarea></center>
+				<div style="padding-top: 13px;"><button class="button_order" type="button" ><p>Đặt hàng</p></button></div>
+				<center><div id="paypal-button"></div></center>
+			</div>
+		</td>
+  	</tr>
+	</tbody>
+</table>
+
+
+
+<script>
+
+	$("#method_payment1").click(function (){ //Thanh toan bang tien mac
+		$('.button_order').css('display', 'block');
+		$('#paypal-button').css('display', 'none');
+	});
+
+	$("#method_payment2").click(function (){ //Thanh toan bang paypal
+		$('.button_order').css('display', 'none');
+		$('#paypal-button').css('display', 'block');
+	});
+
+	function deleteCartProduct(produceid) {
+		var item_t = tranInfo.transactions[0].item_list.items;
+		$(".produce_delete_" + produceid).parent().parent().remove();
+		for (var i=0; i<shoppingCartItems.length; i++) {
+			if (shoppingCartItems[i].id = produceid) {
+				shoppingCartItems.splice(i, 1);
+				sessionStorage["shopping-cart-items"] = JSON.stringify(shoppingCartItems);
+				for (var j=0; j<item_t.length; j++) {
+					if (item_t[j].name == shoppingCartItems[i].name && parseInt(item_t[j].price, 10) == shoppingCartItems[i].price){
+						item_t.splice(j, 1);
+						countPrice();
+						break;
+					}
+				}
+				break;
+			}
+		}
+		bill();
+	}
+
+	function bill () {
+		var totalMoney = 0;
+		var listProduce = $(".detail");
+		for (var i=0; i<listProduce.length; i++) {
+			totalMoney = totalMoney + parseInt($(listProduce.eq(i).find('.amount span')).text(), 10) * parseInt($(listProduce.eq(i).find('option:selected')).text(), 10);
+		}
+		$("#total_money_items").text(totalMoney);
+		$("#total_money").text($("#delievy_fee").val() + totalMoney);
+	}
+
+	function updateQuantity (id) {
+		var item_t = tranInfo.transactions[0].item_list.items;
+		for (var i=0; i<shoppingCartItems.length; i++) {
+			if (shoppingCartItems[i].id == id) {
+				shoppingCartItems[i].quantity = parseInt($("#changQuantityProduct_" + id).find('option:selected').text(), 10);
+				sessionStorage["shopping-cart-items"] = JSON.stringify(shoppingCartItems);
+				for (var j=0; j<item_t.length; j++) {
+					if (item_t[j].name == shoppingCartItems[i].name && parseInt(item_t[j].price, 10) == shoppingCartItems[i].price){
+						item_t[j].quantity = shoppingCartItems[i].quantity.toString();
+						countPrice();
+						break;
+					}
+				}
+				break;
+			}
+		}
+	}
+
+</script>
+
+<script>
+	$(".button_order").click(function (){ //Thanh toan bang tien mac
+		if (checkInfo() == 0) {
+        		return;
+		}
+		else {
+			shipping();
+		}
+	});
+
+    paypal.Button.render({
+        env: 'sandbox', // Specify 'sandbox' for the test environment
+		client: {
+            sandbox: 'AeqcnjrjLJSi7H9aL5sWewnAA7_RqbhW8QeLdEiZh6RpsEjnSDc47lgpLgaszPShYo9whpz5yjiKDe4J'
+        },
+        payment: function() {
+        	if (checkInfo() == 0) {
+        		return;
+        	}
+            var env    = this.props.env;
+            var client = this.props.client;
+        
+			return paypal.rest.payment.create(env, client, tranInfo);
+        },
+		commit: true,
+        onAuthorize: function(data, actions) {
+            // Execute the payment here, when the buyer approves the transaction
+			return actions.payment.execute().then(function() {
+                // Show a success page to the buyer
+				shipping();
+            });
+       }
+    }, '#paypal-button');
+
+    function checkInfo () {
+    	if ($("#ord_city").find('option:selected').val() == 0 || $("#ord_district").find('option:selected').val() == 0 || $("#ord_address").val() == "") {
+			alert("Bạn cần nhập đầy đủ thông tin");
+			return 0;
+		}
+		var ordInfo = {
+			address: {
+				name_receiver: $(".name").val(),
+				phone_receiver: $(".tel").val(),
+				address: $("#ord_address").val() + " Quận/Huyện " + $("#ord_district").find('option:selected').text() + " Tỉnh/TP " + $("#ord_city").find('option:selected').text()
+			},
+			shoppingCartItems,
+			lengthItems: shoppingCartItems.length
+		}
+		if (ordInfo.address.name_receiver == null || ordInfo.address.phone_receiver == null) {
+			alert("Bạn cần nhập đầy đủ thông tin");
+			return 0;
+		}
+		else {
+			return 1;
+		}
+    }
+
+	function shipping () {
+		$.post("/order", ordInfo,  function(req) {
+			if (req == 1) {
+				alert("Đặt hàng thành công");
+				deleteAllProduce();
+			}
+			else {
+				alert("Đặt hàng thất bại");
+			}
+        });
+	}
+
+	function deleteAllProduce () {
+		$(".detail").remove();
+		bill();
+	}
+</script>

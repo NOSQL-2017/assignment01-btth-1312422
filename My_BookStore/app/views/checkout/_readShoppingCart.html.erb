@@ -1,0 +1,92 @@
+<script>
+	var shoppingCartItems = [];
+    var tranInfo = {
+        "intent": "sale",
+        "payer": {
+            "payment_method": "paypal"
+        },
+        "transactions": [
+        {
+            "amount": {
+                "total": "0.00",
+                "currency": "USD",
+                "details": {
+                    "subtotal": "0.00",
+                    "shipping": "0.00"
+                }
+            },
+            "description": "This is the payment transaction description.",
+            "custom": "EBAY_EMS_90048630024435",
+            "payment_options": {
+                "allowed_payment_method": "INSTANT_FUNDING_SOURCE"
+            },
+            "soft_descriptor": "ECHI5786786",
+            "item_list": {
+                "items": []
+            }
+        }
+        ],
+        "note_to_payer": "Contact us for any questions on your order.",
+        "redirect_urls": {
+            "return_url": "http://www.amazon.com",
+            "cancel_url": "http://www.hawaii.com"
+        }
+    };
+	$(document).ready(function () {
+        // Kiểm tra nếu đã có sessionStorage["shopping-cart-items"] hay chưa?
+        if (sessionStorage["shopping-cart-items"] != null) {
+        	shoppingCartItems = JSON.parse(sessionStorage["shopping-cart-items"].toString());
+        }
+        if (shoppingCartItems.length > 0) {
+            var htmlString = "";
+            for (var i=0; i<shoppingCartItems.length; i++) {
+
+                var item ={name: "", quantity: "0", price: "0", currency: "USD"};
+                item.name = shoppingCartItems[i].name;
+                item.quantity = shoppingCartItems[i].quantity.toString();
+                item.price = (Math.round(shoppingCartItems[i].price/22600).toString());
+                tranInfo.transactions[0].item_list.items.push(item);
+                countPrice();
+
+                htmlString = "<div class='detail'><hr>"
+                htmlString += "<div class='product_picture' style='display: inline-block; vertical-align: top;'>";
+                htmlString += "<a target='_blank' href='/hbkshop&amp;module=product&amp;view=detail&amp;record_id=5658346' rel='nofollow' title='Đồng hồ thông minh Smart Watch Uwatch DZ09 (Vàng)'><img border='0' style='max-width:40px; max-height:50px;' height='50px'";
+                htmlString += " src='" + shoppingCartItems[i].image +"'></a></div>";
+                htmlString += "<div class='produce_info'>";
+                htmlString += "<div><span>"+ shoppingCartItems[i].name +"</span></div>";
+                htmlString += "<div class='produce_delete_"+ shoppingCartItems[i].id +"' style='display: inline-block;'>";
+                htmlString += "<a title='Xóa sản phẩm' onclick='deleteCartProduct("+ shoppingCartItems[i].id +");' href='javascript:;'>Xóa</a></div>";
+                htmlString += "<div class='amount'>";
+                htmlString += "<select class='select_product_quantity' id='changQuantityProduct_"+ shoppingCartItems[i].id +"' onchange='bill(); updateQuantity("+ shoppingCartItems[i].id +");'>";
+                for (var option=1; option<=20; option++) {
+                    htmlString += "<option value='" + option + "' ";
+                    if (option == shoppingCartItems[i].quantity) {
+                        htmlString += "selected='selected'";
+                    }
+                    htmlString += ">" + option + "</option>";
+                }
+                htmlString += "</select>";
+                htmlString += "x <span>"+ shoppingCartItems[i].price +"</span>₫";
+                htmlString += "</div></div></div>";
+                if (i == shoppingCartItems.length-1) {
+                    htmlString += "<hr>"
+                }
+                $(".produce").append(htmlString);
+                htmlString += "";
+            }
+        }
+        bill();
+    });
+    function countPrice() {
+        var item_t = tranInfo.transactions[0].item_list.items;
+        var subtotal_t = 0;
+        var total_t;
+        for (var i=0; i<item_t.length; i++) {
+            subtotal_t += parseInt(item_t[i].price, 10)*parseInt(item_t[i].quantity, 10);
+        }
+        total_t = subtotal_t + parseInt(tranInfo.transactions[0].amount.details.shipping, 10);
+        tranInfo.transactions[0].amount.details.subtotal = subtotal_t.toString();
+        tranInfo.transactions[0].amount.total = total_t.toString();
+    };
+</script>
+
