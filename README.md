@@ -52,7 +52,7 @@ Các **chức năng của demo** đã thực hiện hoặc dự kiến thực hi
 
 Link ảnh GIF demo ứng dụng:
 
-![Video Walkthrough](demo.gif)
+![E:\ruby\CDCL_HTTT\assignment01-btth-1312422](demo.gif)
 
 Tạo ảnh GIF với chương trình [LiceCap](http://www.cockos.com/licecap/).
 
