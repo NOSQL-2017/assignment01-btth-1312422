@@ -44,7 +44,7 @@
                 var item ={name: "", quantity: "0", price: "0", currency: "USD"};
                 item.name = shoppingCartItems[i].name;
                 item.quantity = shoppingCartItems[i].quantity.toString();
-                item.price = (Math.round(shoppingCartItems[i].price/22600).toString());
+                item.price = (shoppingCartItems[i].price.toString());
                 tranInfo.transactions[0].item_list.items.push(item);
                 countPrice();
 

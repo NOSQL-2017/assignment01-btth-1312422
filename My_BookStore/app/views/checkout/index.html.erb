@@ -141,29 +141,6 @@
 		}
 	});
 
-    paypal.Button.render({
-        env: 'sandbox', // Specify 'sandbox' for the test environment
-		client: {
-            sandbox: 'AeqcnjrjLJSi7H9aL5sWewnAA7_RqbhW8QeLdEiZh6RpsEjnSDc47lgpLgaszPShYo9whpz5yjiKDe4J'
-        },
-        payment: function() {
-        	if (checkInfo() == 0) {
-        		return;
-        	}
-            var env    = this.props.env;
-            var client = this.props.client;
-        
-			return paypal.rest.payment.create(env, client, tranInfo);
-        },
-		commit: true,
-        onAuthorize: function(data, actions) {
-            // Execute the payment here, when the buyer approves the transaction
-			return actions.payment.execute().then(function() {
-                // Show a success page to the buyer
-				shipping();
-            });
-       }
-    }, '#paypal-button');
 
     function checkInfo () {
     	if ($("#ord_city").find('option:selected').val() == 0 || $("#ord_district").find('option:selected').val() == 0 || $("#ord_address").val() == "") {

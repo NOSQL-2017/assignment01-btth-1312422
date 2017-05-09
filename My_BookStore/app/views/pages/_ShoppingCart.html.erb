@@ -17,7 +17,7 @@
             var button = $(this); // Lấy đối tượng button mà người dùng click
             var id = button.parent().parent().parent().attr("id"); // id của sản phẩm là id của button
             var name = button.parent().parent().children().eq(1).children().eq(1).text();// name của sản phẩm là thuộc tính data-name của button
-            var price = $("#price_" + id.split("_")[1]).text(); // price của sản phẩm là thuộc tính data-price của button
+            var price = button.parent().parent().children().eq(1).children().eq(0).text(); // price của sản phẩm là thuộc tính data-price của button
             var quantity = 1; // Số lượng
             var image = $("#img_" + id.split("_")[1]).attr("src");
             var item = {
